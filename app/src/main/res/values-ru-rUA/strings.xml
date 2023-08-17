@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Отложений Старт</string>
+    <string name="time_now">Сейчас:</string>
+    <string name="job">Время режима:</string>
+    <string name="end">Конец работы:</string>
+    <string name="text_result">Установи отсрочку:</string>
+    <string name="error">Включи завтра!</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Delayed Start</string>
+    <string name="time_now">Now:</string>
+    <string name="job">Time of job:</string>
+    <string name="end">Time of end:</string>
+    <string name="text_result">Set delay:</string>
+    <string name="error">Turn on tomorrow!</string>
+</resources>
