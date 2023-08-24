@@ -62,10 +62,10 @@ class MainActivity : AppCompatActivity() {
                     "${nowTime.hour}:0${nowTime.minute}"
                 else
                     "${nowTime.hour}:${nowTime.minute}"
-            textResult.text =
             if (timeForSetHour > 23)
-                resources.getString(R.string.error)
-            else
+                timeForSetHour = timeForSetHour - 24
+            //resources.getString(R.string.error)
+            textResult.text =
                 if (timeForSetMinute in 0..9)
                     "$timeForSetHour:0$timeForSetMinute"
                 else
