@@ -10,8 +10,8 @@ import com.nimko.delayedstart.databinding.ActivityMainBinding
 import java.time.LocalTime
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    lateinit var settings:SharedPreferences
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var settings:SharedPreferences
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("CommitPrefEdits")
-    fun saveSettings() {
+    private fun saveSettings() {
         binding.apply {
             settings.edit().apply{
                 putInt(HOUR_JOB, timePickerJob.hour)
@@ -61,18 +61,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun setResult(hourJob:Int, minuteJob:Int, hourEnd:Int, minuteEnd:Int){
+    private fun setResult(hourJob:Int, minuteJob:Int, hourEnd:Int, minuteEnd:Int){
         val nowTime = LocalTime.now()
-        val timeForSetMinute :Int
         var timeForSetHour = 24 - nowTime.hour + hourEnd - hourJob
         val timeMinute =  minuteEnd - nowTime.minute + minuteJob
-        when{
+        val timeForSetMinute = when{
             timeMinute < 0 -> {
                 timeForSetHour--
-                timeForSetMinute = 60 + timeMinute
+                60 + timeMinute
             }
-            timeMinute > 59 -> timeForSetMinute = timeMinute - 60
-            else -> timeForSetMinute = timeMinute
+            timeMinute > 59 -> timeMinute - 60
+            else -> timeMinute
         }
         binding.apply {
             timeNow.text =
@@ -80,13 +79,14 @@ class MainActivity : AppCompatActivity() {
                     "${nowTime.hour}:0${nowTime.minute}"
                 else
                     "${nowTime.hour}:${nowTime.minute}"
-            if (timeForSetHour > 23)
-                timeForSetHour = timeForSetHour - 24
+            if (timeForSetHour > 23)  timeForSetHour -= 24
             textResult.text =
-                if (timeForSetMinute in 0..9)
+                if (timeForSetMinute in 0..9) {
                     "$timeForSetHour:0$timeForSetMinute"
-                else
+                }
+                else {
                     "$timeForSetHour:$timeForSetMinute"
+                }
         }
     }
 
