@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity() {
     private fun setResult(hourJob:Int, minuteJob:Int, hourEnd:Int, minuteEnd:Int){
         val nowTime = LocalTime.now()
         var timeForSetHour = 24 - nowTime.hour + hourEnd - hourJob
-        val timeMinute =  minuteEnd - nowTime.minute + minuteJob
+        val timeMinute =  minuteEnd - nowTime.minute - minuteJob
         val timeForSetMinute = when{
             timeMinute < 0 -> {
-                timeForSetHour--
+                timeForSetHour-=1
                 60 + timeMinute
             }
             timeMinute > 59 -> timeMinute - 60
